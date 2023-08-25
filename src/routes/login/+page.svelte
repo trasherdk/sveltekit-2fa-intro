@@ -5,7 +5,7 @@
 	export let data;
 </script>
 
-<div id="register">
+<div id="login">
 	<h1>Login</h1>
 	{#if data.error}
 		<div class="error">
@@ -18,5 +18,12 @@
 		<label for="password">Password</label>
 		<input type="password" name="password" id="password" />
 		<button type="submit">Login</button>
+		<a href="/register">Register new account</a>
 	</form>
 </div>
+
+<style>
+	a {
+		margin-top: 1rem;
+	}
+</style>
