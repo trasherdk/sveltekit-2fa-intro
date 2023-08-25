@@ -1,9 +1,9 @@
-import { getUser } from './util/database';
+import { getUser } from '$lib/util/database.js';
 
 /**
  * @type {import('@sveltejs/kit').Handle}
  */
-export async function handle({ event, resolve }) {
+export async function handle ({ event, resolve }) {
 	const userId = event.cookies.get('userId');
 	const otpAuthenticated = event.cookies.get('otp_authenticated');
 	if (userId) {

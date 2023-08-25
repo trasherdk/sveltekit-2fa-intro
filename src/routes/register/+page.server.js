@@ -1,5 +1,5 @@
 import { authenticator } from 'otplib';
-import { runQuery } from '../../util/database';
+import { runQuery } from '$lib/util/database';
 import * as bcrypt from 'bcrypt';
 import { redirect } from '@sveltejs/kit';
 
@@ -15,16 +15,16 @@ export const actions = {
 		const createUser = await runQuery(
 			`
       INSERT INTO users (email, password, secret)
-      VALUES ($email, $password, $secret)    
+      VALUES ($email, $password, $secret)
     `,
 			{
 				$email: email,
-				$password: await bcrypt.hash(password, 10),
+				$password: await bcrypt.hash(`{password}`, 10),
 				$secret: secret
 			}
 		);
-		const authKey = authenticator.keyuri(email, 'SvelteKit App', secret);
-		cookies.set('userId', createUser.lastID);
+		const authKey = authenticator.keyuri(`{email}`, 'SvelteKit App', secret);
+		cookies.set('userId', `{createUser.lastID}`);
 		cookies.set('key', authKey);
 		throw redirect(302, '/settings');
 	}

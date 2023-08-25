@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import { authenticator } from 'otplib';
-import { getUser } from '../../util/database';
+import { getUser } from '$lib/util/database';
 
 /**
  * @type {import('./$types').Actions}
@@ -26,7 +26,7 @@ export const actions = {
 /**
  * @type {import('./$types').PageServerLoad}
  */
-export async function load({ url }) {
+export async function load ({ url }) {
 	return {
 		error: url.searchParams.get('error')
 	};

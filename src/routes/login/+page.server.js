@@ -1,4 +1,4 @@
-import { getDatabase } from '../../util/database';
+import { getDatabase } from '$lib/util/database';
 import * as bcrypt from 'bcrypt';
 import { redirect } from '@sveltejs/kit';
 
@@ -22,7 +22,7 @@ export const actions = {
 			throw redirect(302, '/login?error=wrong_details');
 		}
 
-		const passwordsMatch = await bcrypt.compare(password, user.password);
+		const passwordsMatch = await bcrypt.compare(`{password}`, user.password);
 
 		if (passwordsMatch) {
 			cookies.set('userId', user.id, {
@@ -41,7 +41,7 @@ export const actions = {
 /**
  * @type {import('./$types').PageServerLoad}
  */
-export async function load({ url }) {
+export async function load ({ url }) {
 	return {
 		error: url.searchParams.get('error')
 	};
