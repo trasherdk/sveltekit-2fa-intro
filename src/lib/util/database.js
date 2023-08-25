@@ -5,7 +5,7 @@ import sqlite3 from 'sqlite3';
  */
 export async function getDatabase () {
 	return new Promise((resolve, reject) => {
-		const db = new sqlite3.Database('/data/db.sqlite', (err) => {
+		const db = new sqlite3.Database('./data/db.sqlite', (err) => {
 			if (err) return reject(err);
 			resolve(db);
 		});
